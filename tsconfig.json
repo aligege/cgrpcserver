@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "ES2021",
+        "module": "commonjs",
+        "sourceMap": true,
+        "allowJs": false,
+        "outDir": "out",
+        "types": ["node"],
+        "typeRoots": ["node_modules/@types","**/**/types"],
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "importHelpers": true,
+        "strict": false
+    },
+    "exclude": [
+        "node_modules",
+        "out_test",
+        "webpack.config.js",
+        "dist",
+        "Data",
+        "edition"
+    ]
+}
