@@ -1,13 +1,13 @@
 {
-  "name": "cgmqserver",
-  "version": "1.0.391",
-  "description": "cgmqserver",
+  "name": "cgrpcserver",
+  "version": "2.0.0",
+  "description": "cgrpcserver",
   "author": {
     "name": "trojan",
     "email": "chengang01@live.com"
   },
   "dependencies": {
-    "cgserver": "^7.13.2504",
+    "cgserver": "^9.0.1",
     "jsonc": "^2.0.0",
     "underscore": "^1.13.4"
   },

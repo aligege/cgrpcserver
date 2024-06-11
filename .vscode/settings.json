@@ -9,7 +9,6 @@
         "**/.DS_Store": true,
         "**/*.o": true,
         "**/*.o.cmd": true,
-        "**/*.md": true,
         "node_modules": false,
         "internal/*.*": false,
         "other_bat/*.*": true,

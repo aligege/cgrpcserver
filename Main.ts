@@ -3,7 +3,7 @@
 * Copyright : trojan <chengang01@live.com>
 */
 
-import { CgMqServer } from "../CgMq/CgMqServer"
+import { CgMqServer } from "./CgRpc/CgMqServer"
 
 for(let i=0;i<process.argv.length;++i)
 {

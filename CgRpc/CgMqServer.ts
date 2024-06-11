@@ -1,6 +1,6 @@
 ﻿import { ISocketServer } from "cgserver"
-import { GCgMqCfg } from "./Config/CgMqConfig"
 import { CgMqClientWebSocket } from "./Net/CgMqClientWebSocket"
+import { GCgRpcCfg } from "./Config/CgRpcConfig"
 
 export let GCgMqServer:CgMqServer = null
 export class CgMqServer extends ISocketServer
@@ -11,8 +11,8 @@ export class CgMqServer extends ISocketServer
     }
     constructor()
     {
-        GCgMqCfg.init()
-        super(GCgMqCfg)
+        GCgRpcCfg.init()
+        super(GCgRpcCfg)
         GCgMqServer = this
         this.registerWebSocketHandleClass("default",CgMqClientWebSocket)
     }

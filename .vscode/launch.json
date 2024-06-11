@@ -14,7 +14,7 @@
             "request": "launch",
             "cwd": "${workspaceRoot}",
             // node程序的入口脚本路径(相对于工作空间)
-            "program": "${workspaceRoot}/Main/Main.ts",
+            "program": "${workspaceRoot}/Main.ts",
             "preLaunchTask": "tsc: build - tsconfig.json",
             "stopOnEntry": false,
             // 接在program指定js后面的参数
