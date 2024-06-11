@@ -1,14 +1,14 @@
 /*!@preserve
-* CgMq     : one simple mq
+* CgRpc     : one simple rpcserver
 * Copyright : trojan <chengang01@live.com>
 */
 
-import { CgMqServer } from "./CgRpc/CgMqServer"
+import { CgRpcServer } from "./CgRpc/CgRpcServer"
 
 for(let i=0;i<process.argv.length;++i)
 {
     let str = process.argv[i].toLowerCase()
 }
 
-let server = new CgMqServer()
+let server = new CgRpcServer()
 server.run()

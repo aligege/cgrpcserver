@@ -1,12 +1,12 @@
 import { GCgServer, IRpcClientWebSocket, ISocketServer, Rpc } from 'cgserver';
 import _ from 'underscore';
-import { GCgMqServer } from '../CgMqServer';
+import { GCgRpcServer } from '../CgRpcServer';
 import { RpcMsg } from 'cgserver/dist/types/Framework/SocketServer/IRpc';
 
 /*
     主动和center服连接，交换比赛信息，游戏的最核心玩法
 */
-export class CgMqClientWebSocket extends IRpcClientWebSocket
+export class CgRpcClientWebSocket extends IRpcClientWebSocket
 {
     constructor(server:ISocketServer)
     {
@@ -17,15 +17,15 @@ export class CgMqClientWebSocket extends IRpcClientWebSocket
     }
     getWsByGroup(group:string)
     {
-        let wses:CgMqClientWebSocket[]=[]
+        let wses:CgRpcClientWebSocket[]=[]
         if(!group)
         {
             return wses
         }
-        let allClients = GCgMqServer.allClients
+        let allClients = GCgRpcServer.allClients
         for(let key in allClients)
         {
-            let ct = allClients[key] as CgMqClientWebSocket
+            let ct = allClients[key] as CgRpcClientWebSocket
             if(ct._group==group)
             {
                 wses.push(ct)
@@ -39,10 +39,10 @@ export class CgMqClientWebSocket extends IRpcClientWebSocket
         {
             return null
         }
-        let allClients = GCgMqServer.allClients
+        let allClients = GCgRpcServer.allClients
         for(let key in allClients)
         {
-            let ct = allClients[key] as CgMqClientWebSocket
+            let ct = allClients[key] as CgRpcClientWebSocket
             if(ct._group==group&&ct._id==id)
             {
                 return ct
@@ -82,7 +82,7 @@ export class CgMqClientWebSocket extends IRpcClientWebSocket
             this.send(ret_msg)
             return
         }
-        let wses:CgMqClientWebSocket[]=[]
+        let wses:CgRpcClientWebSocket[]=[]
         if(req_msg.to_id)
         {
             let ws = this.getWsByGroupId(req_msg.to_group,req_msg.to_id)

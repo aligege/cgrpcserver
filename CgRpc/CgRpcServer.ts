@@ -1,9 +1,9 @@
 ﻿import { ISocketServer } from "cgserver"
-import { CgMqClientWebSocket } from "./Net/CgMqClientWebSocket"
+import { CgRpcClientWebSocket } from "./Net/CgRpcClientWebSocket"
 import { GCgRpcCfg } from "./Config/CgRpcConfig"
 
-export let GCgMqServer:CgMqServer = null
-export class CgMqServer extends ISocketServer
+export let GCgRpcServer:CgRpcServer = null
+export class CgRpcServer extends ISocketServer
 {
     get allClients()
     {
@@ -13,8 +13,8 @@ export class CgMqServer extends ISocketServer
     {
         GCgRpcCfg.init()
         super(GCgRpcCfg)
-        GCgMqServer = this
-        this.registerWebSocketHandleClass("default",CgMqClientWebSocket)
+        GCgRpcServer = this
+        this.registerWebSocketHandleClass("default",CgRpcClientWebSocket)
     }
     onListenning()
     {
