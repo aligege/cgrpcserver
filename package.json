@@ -7,9 +7,10 @@
     "email": "chengang01@live.com"
   },
   "dependencies": {
-    "cgserver": "^9.1.7",
+    "cgserver": "^9.1.14",
     "jsonc": "^2.0.0",
-    "underscore": "^1.13.4"
+    "underscore": "^1.13.4",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "webpack": "^5.74.0",

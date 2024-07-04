@@ -9,9 +9,10 @@ export class CgRpcServer extends ISocketServer
     {
         return this._ws_clients
     }
-    constructor()
+    constructor(port:number)
     {
         GCgRpcCfg.init()
+        GCgRpcCfg.port = port
         super(GCgRpcCfg)
         GCgRpcServer = this
         this.registerWebSocketHandleClass("default",CgRpcClientWebSocket)
