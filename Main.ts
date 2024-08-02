@@ -7,6 +7,7 @@
 
 import { CgRpcServer } from "./CgRpc/CgRpcServer";
 import * as yargs from "yargs";
+import { GCgRpcCfg } from "./CgRpc/Config/CgRpcConfig";
 
 let port:number = yargs.argv.port || 8888
 

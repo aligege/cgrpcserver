@@ -1,19 +1,19 @@
-import { GCgServer, IRpcClientWebSocket, ISocketServer, Rpc } from 'cgserver';
 import _ from 'underscore';
 import { GCgRpcServer } from '../CgRpcServer';
 import { RpcMsg } from 'cgserver/dist/types/Framework/SocketServer/IRpc';
+import { cg } from 'cgserver';
 
 /*
     主动和center服连接，交换比赛信息，游戏的最核心玩法
 */
-export class CgRpcClientWebSocket extends IRpcClientWebSocket
+export class CgRpcClientWebSocket extends cg.IRpcClientWebSocket
 {
-    constructor(server:ISocketServer)
+    constructor(server:cg.ISocketServer)
     {
         super(server)
         this._debug_msg=true
         this._group="cgrpc"
-        this._id=GCgServer.customprocessid
+        this._id=cg.global.gCgServer.customprocessid
     }
     getWsByGroup(group:string)
     {

@@ -1,9 +1,9 @@
-﻿import { ISocketServer } from "cgserver"
-import { CgRpcClientWebSocket } from "./Net/CgRpcClientWebSocket"
+﻿import { CgRpcClientWebSocket } from "./Net/CgRpcClientWebSocket"
 import { GCgRpcCfg } from "./Config/CgRpcConfig"
+import { cg } from "cgserver"
 
 export let GCgRpcServer:CgRpcServer = null
-export class CgRpcServer extends ISocketServer
+export class CgRpcServer extends cg.ISocketServer
 {
     get allClients()
     {
