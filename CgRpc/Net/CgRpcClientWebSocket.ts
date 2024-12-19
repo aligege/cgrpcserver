@@ -8,6 +8,14 @@ import { cg } from 'cgserver';
 */
 export class CgRpcClientWebSocket extends cg.IRpcClientWebSocket
 {
+    isListenning(listen:string)
+    {
+        if(!listen)
+        {
+            return true
+        }
+        return !!this._listens[listen]
+    }
     constructor(server:cg.ISocketServer)
     {
         super(server)
@@ -15,7 +23,7 @@ export class CgRpcClientWebSocket extends cg.IRpcClientWebSocket
         this._group="cgrpc"
         this._id=cg.global.gCgServer.customprocessid
     }
-    getWsByGroup(group:string)
+    getWsByGroup(group:string,listen:string)
     {
         let wses:CgRpcClientWebSocket[]=[]
         if(!group)
@@ -26,7 +34,7 @@ export class CgRpcClientWebSocket extends cg.IRpcClientWebSocket
         for(let key in allClients)
         {
             let ct = allClients[key] as CgRpcClientWebSocket
-            if(ct._group==group)
+            if(ct._group==group&&ct.isListenning(listen))
             {
                 wses.push(ct)
             }
@@ -50,24 +58,6 @@ export class CgRpcClientWebSocket extends cg.IRpcClientWebSocket
         }
         return null
     }
-    receive_init(req_msg:RpcMsg)
-    {
-        if(req_msg.__rpcid)
-        {
-            req_msg.__return=true
-        }
-        if(!req_msg.from_group)
-        {
-            let ret_msg = this.toRetMsg(req_msg,req_msg.data,{id:10004,des:"初始化消息必须带有identity"})
-            this.send(ret_msg)
-            return
-        }
-        this._group=req_msg.from_group
-        this._id=req_msg.from_id
-
-        let ret_msg = this.toRetMsg(req_msg,null)
-        this.send(ret_msg)
-    }
     async receive_msg(req_msg:RpcMsg)
     {
         if(!req_msg.__rpcid)
@@ -90,7 +80,7 @@ export class CgRpcClientWebSocket extends cg.IRpcClientWebSocket
         }
         else
         {
-            wses = this.getWsByGroup(req_msg.to_group)
+            wses = this.getWsByGroup(req_msg.to_group,req_msg.listen)
         }
         //发送给远程服务器的消息
         if(wses.length==0)

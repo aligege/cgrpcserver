@@ -1,0 +1,1 @@
+pm2 start cgrpcserver.js --name=cgrpc -- --port=8888 --cfgdir=data
