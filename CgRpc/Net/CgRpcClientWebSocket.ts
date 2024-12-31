@@ -90,12 +90,18 @@ export class CgRpcClientWebSocket extends cg.IRpcClientWebSocket
             return
         }
         let arets=[]
+        let rpc_id=req_msg.__rpcid
+        let rpc_id_index=0
         for(let key in wses)
         {
             let ws = wses[key]
+            req_msg.__rpcid=rpc_id+"_"+rpc_id_index
+            rpc_id_index++
             let ret = ws.callRemote(req_msg)
             arets.push(ret)
         }
+        //还原rpc_id
+        req_msg.__rpcid=rpc_id
         let rets=[]
         let first_ret:RpcMsg=null
         for(let key in arets)
