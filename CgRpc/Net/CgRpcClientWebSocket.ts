@@ -100,8 +100,6 @@ export class CgRpcClientWebSocket extends cg.IRpcClientWebSocket
             let ret = ws.callRemote(req_msg)
             arets.push(ret)
         }
-        //还原rpc_id
-        req_msg.__rpcid=rpc_id
         let rets=[]
         let first_ret:RpcMsg=null
         for(let key in arets)
@@ -113,11 +111,14 @@ export class CgRpcClientWebSocket extends cg.IRpcClientWebSocket
                 first_ret=ret
             }
         }
+        //还原rpc_id
+        req_msg.__rpcid=rpc_id
         //回复给调用来源的服务器
         let retMsg = this.toRetMsg(req_msg,rets)
         if(first_ret)
         {
-            retMsg.from_group=first_ret.from_group
+            retMsg.from_group=req_msg.to_group
+            retMsg.to_group=req_msg.from_group
             if(req_msg.to_id)
             {
                 retMsg.from_id=first_ret.from_id
