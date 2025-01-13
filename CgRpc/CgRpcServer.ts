@@ -1,9 +1,8 @@
-﻿import { CgRpcClientWebSocket } from "./Net/CgRpcClientWebSocket"
-import { GCgRpcCfg } from "./Config/CgRpcConfig"
+﻿import { GCgRpcCfg } from "./Config/CgRpcConfig"
 import { cg } from "cgserver"
 
 export let GCgRpcServer:CgRpcServer = null
-export class CgRpcServer extends cg.ISocketServer
+export class CgRpcServer extends cg.IWebSocketServer
 {
     get allClients()
     {
@@ -15,7 +14,7 @@ export class CgRpcServer extends cg.ISocketServer
         GCgRpcCfg.port = port
         super(GCgRpcCfg)
         GCgRpcServer = this
-        this.registerWebSocketHandleClass("default",CgRpcClientWebSocket)
+        this.registerWebSocketHandleClass("default",cg.IRpcClientWebSocket)
     }
     onListenning()
     {
